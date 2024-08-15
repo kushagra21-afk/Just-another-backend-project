@@ -16,7 +16,7 @@ export class mockData implements comands{
         throw new Error("Method not implemented.");
     }
     find(): Promise<Product[]> {
-        
+        throw new Error("Method not implemented.");
     }
     findOne(id: Number): Promise<Product> {
         throw new Error("Method not implemented.");

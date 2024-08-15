@@ -3,6 +3,7 @@ import { data } from "../../repo/data"
 import { CatalogService } from "../configServices"
 import { faker } from "@faker-js/faker";
 import { Product } from "../../models/product";
+import { error } from "console";
 
 const mockProduct = (rest: any) => {
   return {
@@ -65,9 +66,30 @@ describe("catalogService",()=>{
 
     })
     describe("update",()=>{
-        test("should update the products",()=>{
-            
+        test("should update the products", async()=>{
+            const service = new CatalogService(repo)
+            const reqBody = mockProduct({
+                price: +faker.commerce.price(),
+                id: faker.number.int({ min: 10, max: 1000 }),
+              });
+              const result = await service.updateProduct(reqBody);
+              expect(result).toMatchObject(reqBody);            
 
         })
+        test("show throw error when no product matches",async()=>{
+            const service = new CatalogService(repo)
+            const reqBody = mockProduct({
+                price: +faker.commerce.price(),
+                id: faker.number.int({ min: 10, max: 1000 }),
+              });
+            const unknown=jest.spyOn(repo,"update")
+            unknown.mockImplementationOnce(()=>{
+                throw new Error("product not found")
+            }) 
+            expect(service.updateProduct(reqBody)).rejects.toThrow(
+                "product not found"
+            )
+        })
+
     })
 })
