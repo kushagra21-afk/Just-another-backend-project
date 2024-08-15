@@ -5,14 +5,15 @@ import { faker } from "@faker-js/faker";
 import { Product } from "../../models/product";
 import { error } from "console";
 
-const mockProduct = (rest: any) => {
-  return {
-    name: faker.commerce.productName(),
-    description: faker.commerce.productDescription(),
-    stock: faker.number.int({ min: 10, max: 100 }),
-    ...rest,
-  };
-};
+
+function mockProduct(rest: any) {
+    return {
+        name: faker.commerce.productName(),
+        description: faker.commerce.productDescription(),
+        stock: faker.number.int({ min: 10, max: 100 }),
+        ...rest,
+    };
+}
 describe("catalogService",()=>{
     let repo: data
     beforeEach(()=>{

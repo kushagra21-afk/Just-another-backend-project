@@ -12,14 +12,14 @@ export class mockData implements comands{
     update(data: Product): Promise<Product> {
        return Promise.resolve(data as unknown as Product)
     }
-    delete(id: any): void {
-        throw new Error("Method not implemented.");
+    delete(id: any): Promise<any> {
+        return Promise.resolve(id)
     }
-    find(): Promise<Product[]> {
-        throw new Error("Method not implemented.");
+    find(limit:Number, offset:Number): Promise<Product[]> {
+        return Promise.resolve([]);
     }
     findOne(id: Number): Promise<Product> {
-        throw new Error("Method not implemented.");
+        return Promise.resolve({id} as unknown as Product)
     }
     
 }

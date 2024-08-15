@@ -22,11 +22,11 @@ export class CatalogService {
     }
     return data;
   }
-//   async getProducts(limit: number, offset: number) {
-//     const products = await this._repository.find(limit, offset);
+  async getProducts(limit: number, offset: number) {
+    const products = await this._repository.find(limit, offset);
 
-//     return products;
-//   }
+    return products;
+  }
 
   async getProduct(id: number) {
     const product = await this._repository.findOne(id);
