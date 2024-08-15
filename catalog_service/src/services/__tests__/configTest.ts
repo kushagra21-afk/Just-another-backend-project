@@ -2,6 +2,7 @@ import { mockData } from "../../repo/mockData"
 import { data } from "../../repo/data"
 import { CatalogService } from "../configServices"
 import { faker } from "@faker-js/faker";
+import { Product } from "../../models/product";
 
 const mockProduct = (rest: any) => {
   return {
@@ -19,7 +20,7 @@ describe("catalogService",()=>{
     afterEach(()=>{
         repo = {} as mockData
     })
-    describe("catalogService",()=>{
+    describe("create",()=>{
         test("should create product",async()=>{
             const service = new CatalogService(repo);
             const reqBody = mockProduct({
@@ -34,16 +35,39 @@ describe("catalogService",()=>{
                 stock: expect.any(Number),
         })
         })
-        test("should not create duplicate products",async()=>{
+        test("not able to create product",async()=>{
             const service = new CatalogService(repo);
             const reqBody = mockProduct({
                 price: +faker.commerce.price
             })
             const duplicate= jest.spyOn(repo,"create")
-            duplicate.mockImplementationOnce()
+            duplicate.mockImplementationOnce(()=> Promise.resolve({} as Product))
             await expect(service.createProduct(reqBody)).rejects.toThrow(
                 "not able to create product"
             ) 
+        })
+        // jest
+        // .spyOn(repository, "create")
+        // .mockImplementationOnce(() =>
+        //   Promise.reject(new Error("product already exist"))
+        // );
+        test("duplicate product",async()=>{
+            const service = new CatalogService(repo);
+            const reqBody = mockProduct({
+                price: +faker.commerce.price
+            })
+            const duplicate= jest.spyOn(repo,"create")
+            duplicate.mockImplementationOnce(()=> Promise.reject(new Error("duplicate product")))
+            await expect(service.createProduct(reqBody)).rejects.toThrow(
+                "duplicate product"
+            ) 
+        })
+
+    })
+    describe("update",()=>{
+        test("should update the products",()=>{
+            
+
         })
     })
 })

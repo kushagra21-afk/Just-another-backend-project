@@ -10,13 +10,13 @@ export class mockData implements comands{
         return Promise.resolve(product)
     }
     update(data: Product): Promise<Product> {
-        throw new Error("Method not implemented.");
+       return Promise.resolve(data as unknown as Product)
     }
     delete(id: any): void {
         throw new Error("Method not implemented.");
     }
     find(): Promise<Product[]> {
-        throw new Error("Method not implemented.");
+        
     }
     findOne(id: Number): Promise<Product> {
         throw new Error("Method not implemented.");
