@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from "express";
 import { CatalogService } from "../services/configServices";
 import { data } from "../repo/data";
 import { RequestValidator } from "../utils/requestValidator";
-import { CreateProductRequest, UpdateProductRequest } from "../dto/product.dto";
+import { CreateProductRequest, UpdateProductRequest } from "../dto/productDto";
 
 const app = express();
 
