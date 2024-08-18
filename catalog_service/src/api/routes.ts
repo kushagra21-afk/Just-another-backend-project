@@ -17,7 +17,6 @@ app.post(
         CreateProductRequest,
         req.body
       );
-
       if (errors) return res.status(400).json(errors);
       const data = await catalogService.createProduct(input);
       return res.status(201).json(data);
@@ -53,8 +52,8 @@ app.patch(
 app.get(
   "/products",
   async (req: Request, res: Response) => {
-    const limit = Number(req.query["limit"]);
-    const offset = Number(req.query["offset"]);
+    const limit = Number(req.query["limit"] || 10);
+    const offset = Number(req.query["offset"] || 1);
     try {
       const data = await catalogService.getProducts(limit, offset);
       return res.status(200).json(data);

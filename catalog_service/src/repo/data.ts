@@ -1,21 +1,27 @@
 import { comands } from "../interface/comandingTheRepo";
 import { Product } from "../models/product";
+import { ProductFactory } from "../utils/fixtures";
 
 export class data implements comands{
-    create(data: Product): Promise<Product> {
-        throw new Error("Method not implemented.");
+    async create(data: Product): Promise<Product> {
+        const product = ProductFactory.build()
+        return Promise.resolve(product)
     }
-    update(data: Product): Promise<Product> {
-        throw new Error("Method not implemented.");
+    async update(data: Product): Promise<Product> {
+        const product = ProductFactory.build()
+        return Promise.resolve(product)
     }
-    delete(id: any): Promise<any> {
-        throw new Error("Method not implemented.");
+    async delete(id: any): Promise<any> {
+        const product = ProductFactory.build()
+        return Promise.resolve(product)
     }
-    find(limit: Number, offset: Number): Promise<Product[]> {
-        throw new Error("Method not implemented.");
+    async find(limit: number, offset: number): Promise<Product[]> {
+        const product = ProductFactory.buildList(limit)
+        return Promise.resolve(product)
     }
-    findOne(id: Number): Promise<Product> {
-        throw new Error("Method not implemented.");
+    findOne(id: number): Promise<Product> {
+        const product = ProductFactory.build()
+        return Promise.resolve(product)
     }
     
 }

@@ -3,6 +3,6 @@ export interface comands{
     create(data: Product): Promise <Product>;
     update(data: Product): Promise <Product>;
     delete(id: any): Promise<any>;
-    find(limit:Number, offset: Number): Promise <Product[]>;
-    findOne(id: Number): Promise<Product>
+    find(limit:number, offset: number): Promise <Product[]>;
+    findOne(id: number): Promise<Product>
 }

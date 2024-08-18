@@ -15,10 +15,10 @@ export class mockData implements comands{
     delete(id: any): Promise<any> {
         return Promise.resolve(id)
     }
-    find(limit:Number, offset:Number): Promise<Product[]> {
+    find(limit:number, offset:number): Promise<Product[]> {
         return Promise.resolve([]);
     }
-    findOne(id: Number): Promise<Product> {
+    findOne(id: number): Promise<Product> {
         return Promise.resolve({id} as unknown as Product)
     }
     
