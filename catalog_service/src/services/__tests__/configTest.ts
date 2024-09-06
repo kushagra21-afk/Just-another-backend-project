@@ -15,12 +15,12 @@ function mockProduct(rest: any) {
     };
 }
 describe("catalogService",()=>{
-    let repo: data
+    let repo: mockData
     beforeEach(()=>{
         repo = new mockData()
     })
     afterEach(()=>{
-        repo = {} as mockData
+        repo = {} as data
     })
     describe("create",()=>{
         test("should create product",async()=>{
