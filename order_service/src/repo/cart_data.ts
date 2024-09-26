@@ -1,4 +1,6 @@
 
+import { DB } from "../db/db.connection";
+import { carts } from "../db/schema";
 import { Types } from "../models/cart";
 // import { TypesFactory } from "../utils/fixtures";
 export interface comands{
@@ -12,11 +14,12 @@ export interface comands{
 export class data implements comands{
     
     async create(data: Types): Promise<Types> {
-        const cart_data = {
-            id: 112,
-            ...data,
-        } as Types
-        return Promise.resolve(cart_data)
+        const result = await DB.insert(carts)
+        .values({
+          customerId: 121,
+        }).returning({cart_id: carts.id})
+        console.log(result)
+        return Promise.resolve(data)
     }
     async update(data: Types): Promise<Types> {
         
